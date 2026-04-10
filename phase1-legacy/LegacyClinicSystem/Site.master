@@ -1,0 +1,37 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="LegacyClinicSystem.SiteMaster" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Clinic Management System</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        /* Anti-pattern: Inline styles instead of CSS file */
+        .menu { background-color: #f0f0f0; padding: 10px; }
+        .menu a { margin-right: 15px; text-decoration: none; color: #333; }
+        .menu a:hover { text-decoration: underline; }
+        .content { padding: 20px; }
+        .footer { text-align: center; margin-top: 20px; color: #666; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="menu">
+            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Default.aspx">Home</asp:HyperLink>
+            <asp:HyperLink ID="lnkPatients" runat="server" NavigateUrl="~/Patients.aspx">Patients</asp:HyperLink>
+            <asp:HyperLink ID="lnkAddPatient" runat="server" NavigateUrl="~/AddPatient.aspx">Add Patient</asp:HyperLink>
+            <asp:HyperLink ID="lnkDoctors" runat="server" NavigateUrl="~/Doctors.aspx">Doctors</asp:HyperLink>
+            <asp:HyperLink ID="lnkAppointments" runat="server" NavigateUrl="~/Appointments.aspx">Appointments</asp:HyperLink>
+            <asp:HyperLink ID="lnkBookAppointment" runat="server" NavigateUrl="~/BookAppointment.aspx">Book Appointment</asp:HyperLink>
+        </div>
+        <div class="content">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div class="footer">
+            Copyright © 2023 Legacy Clinic System
+        </div>
+    </form>
+</body>
+</html>
