@@ -3,34 +3,56 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Clinic Management System</title>
+    <title>Riverside Clinic Management System</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <!-- Bootstrap 3.4.1 CSS (era‑appropriate) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-..." crossorigin="anonymous" />
     <style type="text/css">
-        /* Anti-pattern: Inline styles instead of CSS file */
-        .menu { background-color: #f0f0f0; padding: 10px; }
-        .menu a { margin-right: 15px; text-decoration: none; color: #333; }
-        .menu a:hover { text-decoration: underline; }
-        .content { padding: 20px; }
+        /* Legacy inline styles – typical of a small team in 2010‑2014 */
+        body { background-color: #e9f2f9; }
+        .navbar-brand { font-weight: bold; }
+        .sidebar { background-color: #f5f5f5; padding: 15px; min-height: 400px; }
         .footer { text-align: center; margin-top: 20px; color: #666; font-size: 0.9em; }
     </style>
+    <!-- jQuery 1.11.x (era‑appropriate) -->
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="menu">
-            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Default.aspx">Home</asp:HyperLink>
-            <asp:HyperLink ID="lnkPatients" runat="server" NavigateUrl="~/Patients.aspx">Patients</asp:HyperLink>
-            <asp:HyperLink ID="lnkAddPatient" runat="server" NavigateUrl="~/AddPatient.aspx">Add Patient</asp:HyperLink>
-            <asp:HyperLink ID="lnkDoctors" runat="server" NavigateUrl="~/Doctors.aspx">Doctors</asp:HyperLink>
-            <asp:HyperLink ID="lnkAppointments" runat="server" NavigateUrl="~/Appointments.aspx">Appointments</asp:HyperLink>
-            <asp:HyperLink ID="lnkBookAppointment" runat="server" NavigateUrl="~/BookAppointment.aspx">Book Appointment</asp:HyperLink>
-        </div>
+        <!-- Top navigation bar -->
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="~/Default.aspx">Riverside Clinic</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><asp:HyperLink ID="lnkPatients" runat="server" NavigateUrl="~/Patients.aspx">Patients</asp:HyperLink></li>
+                    <li><asp:HyperLink ID="lnkAppointments" runat="server" NavigateUrl="~/Appointments.aspx">Appointments</asp:HyperLink></li>
+                    <li><asp:HyperLink ID="lnkBilling" runat="server" NavigateUrl="~/Billing.aspx">Billing</asp:HyperLink></li>
+                    <li><asp:HyperLink ID="lnkReports" runat="server" NavigateUrl="~/Reports.aspx">Reports</asp:HyperLink></li>
+                </ul>
+                <p class="navbar-text navbar-right">Logged in as: <strong>Admin</strong></p>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 sidebar">
+                    <!-- Placeholder for quick links / recent items -->
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#">Quick Link 1</a></li>
+                        <li><a href="#">Quick Link 2</a></li>
+                        <li><a href="#">Recent Item</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-9 content">
         <div class="content">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
         <div class="footer">
-            Copyright © 2023 Legacy Clinic System
+            © 2013 Riverside Clinic System v1.4.2
         </div>
     </form>
 </body>
