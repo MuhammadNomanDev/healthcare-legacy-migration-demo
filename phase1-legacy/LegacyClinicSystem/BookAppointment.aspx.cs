@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace LegacyClinicSystem
 {
@@ -19,7 +20,7 @@ namespace LegacyClinicSystem
         private void LoadPatients()
         {
             // Anti-pattern: Hardcoded connection string
-            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=LegacyClinicDb;Integrated Security=True";
+            string connectionString = @"Data Source=DESKTOP-IH0NJ1K\SQLEXPRESS;Initial Catalog=TEST;Integrated Security=True";
             
             try
             {
@@ -54,7 +55,7 @@ namespace LegacyClinicSystem
         private void LoadDoctors()
         {
             // Anti-pattern: Hardcoded connection string
-            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=LegacyClinicDb;Integrated Security=True";
+            string connectionString = @"Data Source=DESKTOP-IH0NJ1K\SQLEXPRESS;Initial Catalog=TEST;Integrated Security=True";
             
             try
             {
@@ -102,7 +103,7 @@ namespace LegacyClinicSystem
                 return;
             }
             
-            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=LegacyClinicDb;Integrated Security=True";
+            string connectionString = @"Data Source=DESKTOP-IH0NJ1K\SQLEXPRESS;Initial Catalog=TEST;Integrated Security=True";
             
             try
             {
