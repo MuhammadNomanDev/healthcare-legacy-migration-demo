@@ -18,7 +18,7 @@ namespace LegacyClinicSystem
         private void LoadPatients()
         {
             // Anti-pattern: Hardcoded connection string in code-behind
-            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=LegacyClinicDb;Integrated Security=True";
+            string connectionString = @"Data Source=DESKTOP-IH0NJ1K\SQLEXPRESS;Initial Catalog=TEST;Integrated Security=True";
             
             try
             {

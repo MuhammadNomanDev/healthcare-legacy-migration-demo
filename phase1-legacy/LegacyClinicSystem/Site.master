@@ -1,58 +1,98 @@
-<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="LegacyClinicSystem.SiteMaster" %>
+<%@ Master Language="C#" AutoEventWireup="true" %>
 
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Riverside Clinic Management System</title>
+    <title>City Clinic Management System</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    <!-- Bootstrap 3.4.1 CSS (era‑appropriate) -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-..." crossorigin="anonymous" />
+    <!-- Bootstrap 5 CSS via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <style type="text/css">
-        /* Legacy inline styles – typical of a small team in 2010‑2014 */
-        body { background-color: #e9f2f9; }
-        .navbar-brand { font-weight: bold; }
-        .sidebar { background-color: #f5f5f5; padding: 15px; min-height: 400px; }
-        .footer { text-align: center; margin-top: 20px; color: #666; font-size: 0.9em; }
+        /* Updated styles for Bootstrap 5 with medical theme */
+        body { background-color: #f8f9fa; }
+        .navbar-brand { font-weight: bold; font-size: 1.5rem; }
+        .footer { text-align: center; margin-top: 20px; color: #6c757d; font-size: 0.9rem; }
+        .stat-card { border-radius: 0.5rem; box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075); }
     </style>
-    <!-- jQuery 1.11.x (era‑appropriate) -->
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
+         <asp:ScriptManager ID="ScriptManager1" runat="server" />
         <!-- Top navigation bar -->
-        <nav class="navbar navbar-default" role="navigation">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="~/Default.aspx">Riverside Clinic</a>
+                <a class="navbar-brand" href="~/Default.aspx">City Clinic</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <asp:HyperLink ID="lnkDashboard" runat="server" NavigateUrl="~/Default.aspx" CssClass="nav-link">Dashboard</asp:HyperLink>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarPatientsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Patients
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarPatientsDropdown">
+                                <li><asp:HyperLink ID="lnkPatientsList" runat="server" NavigateUrl="~/Patients.aspx" CssClass="dropdown-item">Patient List</asp:HyperLink></li>
+                                <li><asp:HyperLink ID="lnkAddPatient" runat="server" NavigateUrl="~/AddPatient.aspx" CssClass="dropdown-item">Add Patient</asp:HyperLink></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarAppointmentsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Appointments
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarAppointmentsDropdown">
+                                <li><asp:HyperLink ID="lnkAppointmentsList" runat="server" NavigateUrl="~/Appointments.aspx" CssClass="dropdown-item">Appointment List</asp:HyperLink></li>
+                                <li><asp:HyperLink ID="lnkBookAppointment" runat="server" NavigateUrl="~/BookAppointment.aspx" CssClass="dropdown-item">Book Appointment</asp:HyperLink></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarBillingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Billing
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarBillingDropdown">
+                                <li><asp:HyperLink ID="lnkBillingList" runat="server" NavigateUrl="~/Billing.aspx" CssClass="dropdown-item">Billing List</asp:HyperLink></li>
+                                <li><asp:HyperLink ID="lnkAddBilling" runat="server" NavigateUrl="~/AddBilling.aspx" CssClass="dropdown-item">Add Billing</asp:HyperLink></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <asp:HyperLink ID="lnkReports" runat="server" NavigateUrl="~/Reports.aspx" CssClass="nav-link">Reports</asp:HyperLink>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDoctorsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Doctors
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDoctorsDropdown">
+                                <li><asp:HyperLink ID="lnkDoctorsList" runat="server" NavigateUrl="~/Doctors.aspx" CssClass="dropdown-item">Doctor List</asp:HyperLink></li>
+                                <li><asp:HyperLink ID="lnkAddDoctor" runat="server" NavigateUrl="~/AddDoctor.aspx" CssClass="dropdown-item">Add Doctor</asp:HyperLink></li>
+                                <li><asp:HyperLink ID="lnkDoctorDetails" runat="server" NavigateUrl="~/DoctorDetails.aspx" CssClass="dropdown-item">Doctor Details</asp:HyperLink></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <p class="navbar-text">Logged in as: <strong>Admin</strong></p>
+                        </li>
+                    </ul>
                 </div>
-                <ul class="nav navbar-nav">
-                    <li><asp:HyperLink ID="lnkPatients" runat="server" NavigateUrl="~/Patients.aspx">Patients</asp:HyperLink></li>
-                    <li><asp:HyperLink ID="lnkAppointments" runat="server" NavigateUrl="~/Appointments.aspx">Appointments</asp:HyperLink></li>
-                    <li><asp:HyperLink ID="lnkBilling" runat="server" NavigateUrl="~/Billing.aspx">Billing</asp:HyperLink></li>
-                    <li><asp:HyperLink ID="lnkReports" runat="server" NavigateUrl="~/Reports.aspx">Reports</asp:HyperLink></li>
-                </ul>
-                <p class="navbar-text navbar-right">Logged in as: <strong>Admin</strong></p>
             </div>
         </nav>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-3 sidebar">
-                    <!-- Placeholder for quick links / recent items -->
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#">Quick Link 1</a></li>
-                        <li><a href="#">Quick Link 2</a></li>
-                        <li><a href="#">Recent Item</a></li>
-                    </ul>
+                <div class="col-12">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
                 </div>
-                <div class="col-sm-9 content">
-        <div class="content">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+            </div>
         </div>
         <div class="footer">
-            © 2013 Riverside Clinic System v1.4.2
+            © 2023 City Clinic System. All rights reserved.
         </div>
     </form>
 </body>

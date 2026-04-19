@@ -16,7 +16,8 @@ CREATE TABLE Doctors (
     FullName NVARCHAR(100) NOT NULL,
     Specialisation NVARCHAR(100),
     Phone NVARCHAR(20),
-    Email NVARCHAR(100)
+    Email NVARCHAR(100),
+    CreatedAt DATETIME DEFAULT GETDATE()
 );
 
 -- Appointments table
@@ -30,4 +31,18 @@ CREATE TABLE Appointments (
     CreatedAt DATETIME DEFAULT GETDATE(),
     FOREIGN KEY (PatientId) REFERENCES Patients(Id),
     FOREIGN KEY (DoctorId) REFERENCES Doctors(Id)
+);
+
+-- Billing table
+CREATE TABLE Billing (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    AppointmentId INT NOT NULL,
+    PatientId INT NOT NULL,
+    Amount DECIMAL(10,2) NOT NULL,
+    Description NVARCHAR(200),
+    Status NVARCHAR(20) DEFAULT 'Pending', -- Paid/Unpaid/Pending
+    BillingDate DATETIME NOT NULL,
+    CreatedAt DATETIME DEFAULT GETDATE(),
+    FOREIGN KEY (AppointmentId) REFERENCES Appointments(Id),
+    FOREIGN KEY (PatientId) REFERENCES Patients(Id)
 );

@@ -13,7 +13,8 @@ namespace LegacyClinicSystem
             {
                 // Anti-pattern: Hardcoded data instead of database query initially
                 // Later we'll change this to use raw SQL queries
-                LoadDoctorsHardcoded();
+                //LoadDoctorsHardcoded();
+                LoadDoctorsFromDatabase();
             }
         }
 
@@ -45,7 +46,7 @@ namespace LegacyClinicSystem
         private void LoadDoctorsFromDatabase()
         {
             // Anti-pattern: Hardcoded connection string
-            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=LegacyClinicDb;Integrated Security=True";
+            string connectionString = @"Data Source=DESKTOP-IH0NJ1K\SQLEXPRESS;Initial Catalog=TEST;Integrated Security=True";
             
             try
             {

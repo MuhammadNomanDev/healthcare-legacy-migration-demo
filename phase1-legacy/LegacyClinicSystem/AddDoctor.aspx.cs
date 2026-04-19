@@ -5,7 +5,7 @@ using System.Web.UI;
 
 namespace LegacyClinicSystem
 {
-    public partial class AddPatient : Page
+    public partial class AddDoctor : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,33 +29,29 @@ namespace LegacyClinicSystem
                     conn.Open();
                     
                     // Anti-pattern: Inline SQL query with string concatenation (though using parameters here, still inline)
-                    string query = @"INSERT INTO Patients (FirstName, LastName, DateOfBirth, Phone, Email, MedicalRecordNumber, CreatedAt) 
-                                    VALUES (@FirstName, @LastName, @DateOfBirth, @Phone, @Email, @MedicalRecordNumber, GETDATE())";
-                                    
+                    string query = @"INSERT INTO Doctors (FullName, Specialisation, Phone, Email, CreatedAt) 
+                                     VALUES (@FullName, @Specialisation, @Phone, @Email, GETDATE())";
+                                     
                     SqlCommand cmd = new SqlCommand(query, conn);
                     
                     // Anti-pattern: Direct use of user input without validation
-                    cmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
-                    cmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
-                    cmd.Parameters.AddWithValue("@DateOfBirth", txtDateOfBirth.Text);
+                    cmd.Parameters.AddWithValue("@FullName", txtFullName.Text);
+                    cmd.Parameters.AddWithValue("@Specialisation", txtSpecialisation.Text);
                     cmd.Parameters.AddWithValue("@Phone", txtPhone.Text);
                     cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-                    cmd.Parameters.AddWithValue("@MedicalRecordNumber", txtMedicalRecordNumber.Text);
                     
                     int result = cmd.ExecuteNonQuery();
                     
                     if (result > 0)
                     {
-                        lblMessage.Text = "Patient registered successfully!";
+                        lblMessage.Text = "Doctor registered successfully!";
                         lblMessage.ForeColor = System.Drawing.Color.Green;
                         
                         // Anti-pattern: Clearing form in code-behind instead of using proper patterns
-                        txtFirstName.Text = string.Empty;
-                        txtLastName.Text = string.Empty;
-                        txtDateOfBirth.Text = string.Empty;
+                        txtFullName.Text = string.Empty;
+                        txtSpecialisation.Text = string.Empty;
                         txtPhone.Text = string.Empty;
                         txtEmail.Text = string.Empty;
-                        txtMedicalRecordNumber.Text = string.Empty;
                     }
                 }
             }
